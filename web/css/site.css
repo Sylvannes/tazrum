@@ -1,0 +1,203 @@
+html,
+body {
+    height: 100%;
+    background: #e2e2e2; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#e2e2e2), color-stop(50%,#dbdbdb), color-stop(51%,#d1d1d1), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.grid-view th {
+    white-space: nowrap;
+}
+
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+
+.bg-tazrum-gradient {
+    background: #f0f9ff; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #f0f9ff 0%, #cbebff 75%, #cbebff 75%, #cbebff 80%, #a1dbff 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f0f9ff), color-stop(75%,#cbebff), color-stop(75%,#cbebff), color-stop(80%,#cbebff), color-stop(100%,#a1dbff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(-45deg,  #f0f9ff 0%,#cbebff 75%,#cbebff 75%,#cbebff 80%,#a1dbff 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(-45deg,  #f0f9ff 0%,#cbebff 75%,#cbebff 75%,#cbebff 80%,#a1dbff 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(-45deg,  #f0f9ff 0%,#cbebff 75%,#cbebff 75%,#cbebff 80%,#a1dbff 100%); /* IE10+ */
+    background: linear-gradient(135deg,  #f0f9ff 0%,#cbebff 75%,#cbebff 75%,#cbebff 80%,#a1dbff 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.panel-breadcrumbs {
+    border-color: #C7C7C7;
+}
+.panel-breadcrumbs > .panel-heading {
+    background-color: #C7C7C7;
+}
+
+.panel-subforum {
+    border-color: #5C95C5;
+}
+.panel-subforum > .panel-heading {
+    color: #fff;
+    background-color: #5C95C5;
+}
+a > .panel-subforum > .panel-body  {
+    color: #000;
+}
+a:hover,a:focus,a:active> .panel-subforum > .panel-heading,
+a:hover,a:focus,a:active > .panel-subforum > .panel-body {
+    text-decoration: none;
+}
+a:hover > .panel-subforum > .panel-body {
+    background-color: #BED5E8;
+}
+
+.panel-topic-unread {
+    border-color: #FFE2AA;
+}
+.panel-topic-unread > .panel-heading {
+    color: #000;
+    background-color: #FFE2AA;
+}
+a > .panel-topic-unread > .panel-body  {
+    color: #000;
+}
+a:hover,a:focus,a:active> .panel-topic-unread > .panel-heading,
+a:hover,a:focus,a:active > .panel-topic-unread > .panel-body {
+    text-decoration: none;
+}
+a:hover > .panel-topic-unread > .panel-body {
+    background-color: #FFF6E6;
+}
+
+.panel-topic-read {
+    border-color: #5C95C5;
+}
+.panel-topic-read > .panel-heading {
+    color: #fff;
+    background-color: #5C95C5;
+}
+a > .panel-topic-read > .panel-body  {
+    color: #000;
+}
+a:hover,a:focus,a:active> .panel-topic-read > .panel-heading,
+a:hover,a:focus,a:active > .panel-topic-read > .panel-body {
+    text-decoration: none;
+}
+a:hover > .panel-topic-read > .panel-body {
+    background-color: #BED5E8;
+}
+
+.panel-shout {
+    margin-bottom: 5px;
+}
+.panel-shout > .panel-body {
+    background-color: #fff;
+    padding: 0;
+}
+
+.panel-post {
+    border-color: #CCCCFF;
+}
+.panel-post > .panel-heading {
+    background-color: #CCCCFF;
+}
+
+.btn-shout {
+    padding: 0px 6px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn-post {
+    padding: 1px 6px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
