@@ -46,7 +46,7 @@
                                         if ($subforum->getLastTopic()->one() instanceof \app\models\Topic) {
                                             $subforum->lastTopic->getLastPostUser()->one();
                                             $postClass = 'topic-unread';
-                                            if (Yii::$app->user->identity->hasReadPost($subforum->lastTopic->getLastPost()->one())) {
+                                            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->hasReadPost($subforum->lastTopic->getLastPost()->one())) {
                                                 $postClass = 'topic-read';
                                             }
                                             ?>
