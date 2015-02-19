@@ -95,10 +95,10 @@ class SiteController extends Controller
 
         $dataProvider = new ActiveDataProvider([
             'query' => $subforum->getTopics()->with('user'),
+            'sort' => ['defaultOrder' => ['sticky' => SORT_DESC, 'last_post_on' => SORT_DESC]]
             'pagination' => [
                 'pageSize' => 20,
             ],
-            'sort' => ['defaultOrder' => ['sticky' => SORT_DESC, 'last_post_on' => SORT_DESC]]
         ]);
 
         $viewData['subforum'] = $subforum;
