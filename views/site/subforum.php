@@ -10,7 +10,7 @@
         return Html::a(Html::encode($topic->title), ['site/topic', 'id' => $topic->id]);
     }
 
-    function renderAuthor (\app\models\Topic $topic) {
+    function renderTopicAuthor (\app\models\Topic $topic) {
         $author = $topic->getUser()->one();
         return Html::a(Html::encode($author->name), ['site/user', 'id' => $author->id]);
     }
@@ -30,7 +30,7 @@
                         ['attribute' => 'title', 'content' => 'renderTopicTitle'],
                         'creationDate',
                         'last_post_on',
-                        ['attribute' => 'user_id', 'content' => 'renderAuthor'],
+                        ['attribute' => 'user_id', 'content' => 'renderTopicAuthor'],
                     ],
                 ]) ?>
              </div>
