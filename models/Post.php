@@ -94,4 +94,14 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Topic::className(), ['last_post_id' => 'id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPostRead () {
+        return
+            $this->hasOne(PostRead::className(), ['post_id' => 'id'])
+            ->onCondition(['post_read.user_id' => Yii::$app->user->id])
+        ;
+    }
 }

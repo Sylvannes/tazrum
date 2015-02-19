@@ -7,10 +7,14 @@ use yii\db\Expression;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use yii\data\ActiveDataProvider;
-use app\models\User;
 use yii\web\HttpException;
+use app\models\User;
+use app\models\LoginForm;
+use app\models\Category;
+use app\models\Subforum;
+use app\models\Topic;
+use app\models\Shout;
 
 class SiteController extends Controller
 {
@@ -55,12 +59,13 @@ class SiteController extends Controller
         $viewData = array();
 
         $categories =
-            \app\models\Category::find()
-            ->with('subforums')
-            ->all();
+            Category::find()
+            ->with('subforums.lastTopic.lastPostWithPostRead.user')
+            ->all()
+        ;
 
         $shoutADP = new ActiveDataProvider([
-            'query' => \app\models\Shout::find()
+            'query' => Shout::find()
                 ->orderBy(['id' => SORT_DESC,])
                 ->with('user')
                 ->with('toUser'),
@@ -70,7 +75,7 @@ class SiteController extends Controller
         ]);
 
         $activeUsers =
-            \app\models\User::find()
+            User::find()
             ->where(['>=', 'last_login', new Expression('DATE_SUB(NOW(), INTERVAL 10 MINUTE)')])
             ->orderBy(['last_login' => SORT_DESC])
             ->all()
@@ -88,7 +93,7 @@ class SiteController extends Controller
 
         $viewData = array();
 
-        $subforum = \app\models\Subforum::findOne(['id' => $id]);
+        $subforum = Subforum::findOne(['id' => $id]);
         if ($subforum === NULL) {
             throw new HttpException(404, 'Dit subforum kon niet worden gevonden.');
         }
@@ -112,7 +117,7 @@ class SiteController extends Controller
 
         $viewData = array();
 
-        $topic = \app\models\Topic::findOne(['id' => $id]);
+        $topic = Topic::findOne(['id' => $id]);
         if ($topic === NULL) {
             throw new HttpException(404, 'Dit topic kon niet worden gevonden.');
         }
