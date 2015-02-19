@@ -3,7 +3,7 @@
     use yii\grid\GridView;
     /* @var $this yii\web\View */
     $this->title = 'Ledenlijst';
-    $this->params['breadcrumbs'][] = $this->title;
+    $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/memberlist'];
 ?>
 <div class="site-index">
     <div class="body-content">

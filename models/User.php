@@ -53,6 +53,9 @@ use yii\base\ErrorException;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+
+    public $authKey;
+
     /**
      * @inheritdoc
      */

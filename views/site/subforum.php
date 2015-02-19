@@ -2,8 +2,8 @@
     use yii\helpers\Html;
     use yii\grid\GridView;
     /* @var $this yii\web\View */
-    $this->title = 'Subforum: ' . Html::encode($subforum->name);
-    $this->params['breadcrumbs'][] = 'Subforum: ' . Html::a(Html::encode($subforum->name), ['site/subforum', 'id' => $subforum->id]);
+    $this->title = $subforum->name;
+    $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $this->title, 'url' => ['/site/subforum', 'id' => $subforum->id]];
 
     // TODO: The following functions can probably better be replaced with some sort of custom formatter that creates links out of such data.
     function renderTopicTitle (\app\models\Topic $topic) {
