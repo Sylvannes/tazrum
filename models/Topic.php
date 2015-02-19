@@ -96,6 +96,16 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getLastPostWithPostRead () {
+        return
+            $this->hasOne(Post::className(), ['id' => 'last_post_id'])
+            ->joinWith(['postRead'])
+        ;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getSubforum()
     {
         return $this->hasOne(Subforum::className(), ['id' => 'subforum_id']);

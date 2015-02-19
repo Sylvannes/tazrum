@@ -1,6 +1,8 @@
 <?php
     use yii\helpers\Html;
     use yii\widgets\ListView;
+    use app\models\Topic;
+    use app\models\PostRead;
     /* @var $this yii\web\View */
     $this->title = 'TaZrum';
 ?>
@@ -43,10 +45,9 @@
                                     </div>
                                     <div class="col-md-4">
                                         <?php
-                                        if ($subforum->getLastTopic()->one() instanceof \app\models\Topic) {
-                                            $subforum->lastTopic->getLastPostUser()->one();
+                                        if ($subforum->lastTopic instanceof Topic) {
                                             $postClass = 'topic-unread';
-                                            if (!Yii::$app->user->isGuest && Yii::$app->user->identity->hasReadPost($subforum->lastTopic->getLastPost()->one())) {
+                                            if ($subforum->lastTopic->lastPost->postRead instanceof PostRead) {
                                                 $postClass = 'topic-read';
                                             }
                                             ?>
