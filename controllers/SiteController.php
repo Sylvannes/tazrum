@@ -8,7 +8,6 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 use yii\data\ActiveDataProvider;
 use app\models\User;
 use yii\web\HttpException;
@@ -95,12 +94,11 @@ class SiteController extends Controller
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $subforum->getTopics()->orderBy([
-                'last_post_on' => SORT_DESC,
-            ])->with('user'),
+            'query' => $subforum->getTopics()->with('user'),
             'pagination' => [
                 'pageSize' => 20,
             ],
+            'sort' => ['defaultOrder' => ['sticky' => SORT_DESC, 'last_post_on' => SORT_DESC]]
         ]);
 
         $viewData['subforum'] = $subforum;

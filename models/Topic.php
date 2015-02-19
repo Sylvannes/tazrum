@@ -56,15 +56,15 @@ class Topic extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'subforum_id' => 'Subforum ID',
-            'title' => 'Title',
-            'user_id' => 'User ID',
+            'subforum_id' => 'Subforum',
+            'title' => 'Titel',
+            'user_id' => 'Auteur',
             'sticky' => 'Sticky',
             'locked' => 'Locked',
             'private' => 'Private',
-            'created_on' => 'Created On',
-            'last_post_id' => 'Last Post ID',
-            'last_post_user_id' => 'Last Post User ID',
+            'created_on' => 'Aangemaakt',
+            'last_post_id' => 'Laatste post',
+            'last_post_user_id' => 'Laatste post auteur',
             'last_post_on' => 'Last Post On',
         ];
     }
