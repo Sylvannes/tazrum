@@ -28,7 +28,7 @@
                     'layout' => "{items}\n{pager}",
                     'columns' => [
                         ['attribute' => 'title', 'content' => 'renderTopicTitle'],
-                        'creationDate',
+                        'created_on',
                         'last_post_on',
                         ['attribute' => 'user_id', 'content' => 'renderTopicAuthor'],
                     ],
