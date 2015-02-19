@@ -28,7 +28,7 @@ AppAsset::register($this);
             NavBar::begin([
                 'brandLabel' => 'TaZrum 4.0',
                 'brandUrl' => Yii::$app->homeUrl,
-                'options' => ['class' => 'navbar-inverse',],
+                'options' => ['class' => 'navbar-default',],
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-left'],
@@ -47,20 +47,9 @@ AppAsset::register($this);
 
         <div class="container-fluid">
             <?php
-                if (isset($this->params['breadcrumbs'])) {
-                    ?>
-                    <div class="panel panel-breadcrumbs">
-                        <div class="panel-heading">
-                            <?= Html::a('Home', ['/']) ?>
-                            <?php
-                                foreach ($this->params['breadcrumbs'] as $location) {
-                                    echo ' / ' . $location;
-                                }
-                            ?>
-                        </div>
-                    </div>
-                    <?php
-                }
+                echo Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]);
             ?>
             <?= $content ?>
         </div>

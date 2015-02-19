@@ -3,9 +3,9 @@
     use yii\widgets\ListView;
     /* @var $this yii\web\View */
     $topic->getSubforum()->one();
-    $this->title = 'Topic: ' . $topic->title;
-    $this->params['breadcrumbs'][] = 'Subforum: ' . Html::a(Html::encode($topic->subforum->name), ['site/subforum', 'id' => $topic->subforum->id]);
-    $this->params['breadcrumbs'][] = 'Topic: ' . Html::a(Html::encode($topic->title), ['site/topic', 'id' => $topic->id]);
+    $this->title = $topic->title;
+    $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $topic->subforum->name, 'url' => ['site/subforum', 'id' => $topic->subforum->id]];
+    $this->params['breadcrumbs'][] = ['label' => 'Topic: ' . $this->title, 'url' => ['site/topic', 'id' => $topic->id]];
 ?>
 <div class="site-index">
     <div class="body-content">
