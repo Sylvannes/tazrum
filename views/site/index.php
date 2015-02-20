@@ -47,7 +47,7 @@
                                         <?php
                                         if ($subforum->lastTopic instanceof Topic) {
                                             $postClass = 'topic-unread';
-                                            if ($subforum->lastTopic->lastPost->postRead instanceof PostRead) {
+                                            if ($subforum->lastTopic->lastPostWithPostRead->postRead instanceof PostRead) {
                                                 $postClass = 'topic-read';
                                             }
                                             ?>
@@ -55,7 +55,7 @@
                                                 <div class="panel panel-<?= $postClass ?>">
                                                     <div class="panel-heading"><?= Html::encode($subforum->lastTopic->title) ?></div>
                                                     <div class="panel-body">
-                                                        <?= Html::encode($subforum->lastTopic->user->name) ?>,
+                                                        <?= Html::encode($subforum->lastTopic->lastPost->user->name) ?>,
                                                         <?= Yii::$app->formatter->asRelativeTime($subforum->lastTopic->last_post_on) ?>
                                                     </div>
                                                 </div>
