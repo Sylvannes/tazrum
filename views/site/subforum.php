@@ -7,7 +7,7 @@
 
     // TODO: The following functions can probably better be replaced with some sort of custom formatter that creates links out of such data.
     function renderTopicTitle (\app\models\Topic $topic) {
-        return Html::a(Html::encode($topic->title), ['site/topic', 'id' => $topic->id]);
+        return Html::a(Html::encode($topic->title), ['/topic', 'id' => $topic->id]);
     }
 
     function renderTopicAuthor (\app\models\Topic $topic) {

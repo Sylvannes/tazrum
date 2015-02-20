@@ -1,5 +1,6 @@
 <?php
     use yii\helpers\Html;
+    use yii\helpers\Url;
     use yii\widgets\ListView;
     use app\models\Topic;
     use app\models\PostRead;
@@ -51,7 +52,7 @@
                                                 $postClass = 'topic-read';
                                             }
                                             ?>
-                                            <a href="/site/topic?id=<?= Html::encode($subforum->lastTopic->id) ?>">
+                                            <a href="<?= Url::toRoute(['/topic', 'id' => $subforum->lastTopic->id]) ?>">
                                                 <div class="panel panel-<?= $postClass ?>">
                                                     <div class="panel-heading"><?= Html::encode($subforum->lastTopic->title) ?></div>
                                                     <div class="panel-body">
