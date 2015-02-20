@@ -15,7 +15,7 @@
                         <li><a href="#">Verwijderen</a></li>
                     </ul>
                 </div>
-                <?= Html::encode($model->user->name) ?>:
+                <?= $this->render('_username', ['user' => $model->user]) ?>:
             </div>
             <div class="col-md-10">
                 <?= HtmlPurifier::process($model->text) ?>

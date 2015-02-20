@@ -6,7 +6,7 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-1 text-center">
-                <?= Html::encode($model->user->name) ?>
+                <?= $this->render('_username', ['user' => $model->user]) ?>
             </div>
             <div class="col-md-9">
                 <?= Yii::$app->formatter->asDatetime($model->created_on, 'long') ?>

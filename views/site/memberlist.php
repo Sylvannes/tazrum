@@ -1,9 +1,13 @@
 <?php
-    use yii\helpers\Html;
     use yii\grid\GridView;
     /* @var $this yii\web\View */
     $this->title = 'Ledenlijst';
     $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/memberlist'];
+	
+	function renderUsername (app\models\User $user) {
+		return Yii::$app->getView()->render('_username', ['user' => $user]);
+	}
+	
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -16,7 +20,7 @@
                     'dataProvider' => $dataProvider,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'name',
+                        ['attribute' => 'name', 'content' => 'renderUsername'],
                         'topics',
                         'posts',
                         'shouts',
