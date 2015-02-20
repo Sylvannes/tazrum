@@ -34,7 +34,7 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-left'],
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Ledenlijst', 'url' => ['/site/memberlist']],
+                    ['label' => 'Ledenlijst', 'url' => ['/user/list']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->name . ')',
