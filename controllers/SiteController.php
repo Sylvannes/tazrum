@@ -60,7 +60,8 @@ class SiteController extends Controller
 
         $categories =
             Category::find()
-            ->with('subforums.lastTopic.lastPostWithPostRead.user')
+            ->with('subforums.lastTopic.lastPostWithPostRead')
+            ->with('subforums.lastTopic.lastPost.user')
             ->all()
         ;
 
