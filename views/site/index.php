@@ -47,7 +47,7 @@
                                         <?php
                                         if ($subforum->lastTopic instanceof Topic) {
                                             $postClass = 'topic-unread';
-                                            if ($subforum->lastTopic->lastPostWithPostRead->postRead instanceof PostRead) {
+                                            if ($subforum->lastTopic->lastPost->postRead instanceof PostRead) {
                                                 $postClass = 'topic-read';
                                             }
                                             ?>
