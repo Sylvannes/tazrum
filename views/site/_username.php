@@ -17,5 +17,12 @@
 	$user->rank & 4 && Html::addCssClass($options, 'submod');
 	$user->rank & 8 && Html::addCssClass($options, 'mod');
 	$user->rank & 16 && Html::addCssClass($options, 'admin');
+
+    if (isset($link) && !$link) {
+        echo Html::tag('span', Html::encode($user->name), $options);
+    }
+    else {
+        echo Html::a(Html::encode($user->name), ['/user', 'id' => $user->id], $options);
+    }
+
 ?>
-<?= Html::a(Html::encode($user->name), ['/user', 'id' => $user->id], $options) ?>

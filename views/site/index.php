@@ -56,7 +56,7 @@
                                                 <div class="panel panel-<?= $postClass ?>">
                                                     <div class="panel-heading"><?= Html::encode($subforum->lastTopic->title) ?></div>
                                                     <div class="panel-body">
-                                                        <?= /*$this->render('_username', ['user' => $subforum->lastTopic->lastPost->user])*/ Html::encode($subforum->lastTopic->lastPost->user->name) ?>,
+                                                        <?= $this->render('_username', ['user' => $subforum->lastTopic->lastPost->user, 'link' => false]) /*Html::encode($subforum->lastTopic->lastPost->user->name)*/ ?>,
                                                         <?= Yii::$app->formatter->asRelativeTime($subforum->lastTopic->last_post_on) ?>
                                                     </div>
                                                 </div>
