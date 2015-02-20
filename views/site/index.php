@@ -4,8 +4,17 @@
     use yii\widgets\ListView;
     use app\models\Topic;
     use app\models\PostRead;
+    use yii\widgets\Pjax;
     /* @var $this yii\web\View */
     $this->title = 'TaZrum';
+    $this->registerJs('
+        setInterval(function(){
+            $.pjax.reload({container:"#shoutbox-pjax"});
+        }, 5000);
+        $(document).on("pjax:beforeReplace", function(event, contents, options) {
+            // TODO: Figure out a way to cancel pjax replace if content is the same.
+        })
+    ');
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -15,13 +24,19 @@
                     <h4 class="panel-title">Shoutbox</h4>
                 </div>
                 <div class="panel-body bg-tazrum-gradient">
+                    <?php Pjax::begin([
+                        'id' => 'shoutbox-pjax'
+                    ]); ?>
                     <?= ListView::widget([
                         'dataProvider' => $shoutADP,
+                        'id' => 'shoutbox',
+                        'layout' => "{items}\n{pager}",
                         'itemView' => '_shout',
                         'viewParams' => [
                             'fullView' => true,
                         ],
                     ]) ?>
+                    <?php Pjax::end(); ?>
                 </div>
             </div>
             <?php
