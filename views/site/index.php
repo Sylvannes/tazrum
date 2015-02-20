@@ -37,7 +37,7 @@
                                 foreach ($category->subforums as $subforum) {
                                     ?>
                                     <div class="col-md-8">
-                                        <a href="/site/subforum?id=<?= Html::encode($subforum->id) ?>">
+                                        <a href="<?= Url::toRoute(['/subforum', 'id' => $subforum->id]) ?>">
                                             <div class="panel panel-subforum">
                                                 <div class="panel-heading"><?= Html::encode($subforum->name) ?></div>
                                                 <div class="panel-body"><small><?= Html::encode($subforum->desc) ?></small></div>

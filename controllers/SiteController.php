@@ -8,11 +8,9 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
-use yii\web\HttpException;
 use app\models\User;
 use app\models\LoginForm;
 use app\models\Category;
-use app\models\Subforum;
 use app\models\Shout;
 
 class SiteController extends Controller
@@ -86,30 +84,6 @@ class SiteController extends Controller
         $viewData['shoutADP'] = $shoutADP;
 
         return $this->render('index', $viewData);
-
-    }
-
-    public function actionSubforum ($id) {
-
-        $viewData = array();
-
-        $subforum = Subforum::findOne(['id' => $id]);
-        if ($subforum === NULL) {
-            throw new HttpException(404, 'Dit subforum kon niet worden gevonden.');
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $subforum->getTopics()->with('user'),
-            'sort' => ['defaultOrder' => ['sticky' => SORT_DESC, 'last_post_on' => SORT_DESC]],
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-
-        $viewData['subforum'] = $subforum;
-        $viewData['dataProvider'] = $dataProvider;
-
-        return $this->render('subforum', $viewData);
 
     }
 

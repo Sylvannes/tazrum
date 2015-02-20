@@ -11,7 +11,7 @@
     }
 
     function renderTopicAuthor (\app\models\Topic $topic) {
-        $author = $topic->getUser()->one();
+        $author = $topic->user;
         return Yii::$app->getView()->render('_username', ['user' => $author]);
     }
 
