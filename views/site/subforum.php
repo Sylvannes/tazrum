@@ -3,7 +3,7 @@
     use yii\grid\GridView;
     /* @var $this yii\web\View */
     $this->title = $subforum->name;
-    $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $this->title, 'url' => ['/site/subforum', 'id' => $subforum->id]];
+    $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $this->title, 'url' => ['/subforum', 'id' => $subforum->id]];
 
     // TODO: The following functions can probably better be replaced with some sort of custom formatter that creates links out of such data.
     function renderTopicTitle (\app\models\Topic $topic) {
@@ -11,8 +11,8 @@
     }
 
     function renderTopicAuthor (\app\models\Topic $topic) {
-        $author = $topic->getUser()->one();
-        return Html::a(Html::encode($author->name), ['site/user', 'id' => $author->id]);
+        $author = $topic->user;
+        return Html::a(Html::encode($author->name), ['/user', 'id' => $author->id]);
     }
 
 ?>
