@@ -54,6 +54,9 @@ if (YII_ENV_DEV) {
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = 'yii\gii\Module';
+
+    $config['bootstrap'][] = 'utility';
+    $config['modules']['utility'] = 'c006\utility\migration\Module';
 }
 
 return $config;
