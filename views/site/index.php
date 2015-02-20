@@ -1,7 +1,7 @@
 <?php
     use yii\helpers\Html;
     use yii\helpers\Url;
-    use yii\widgets\ListView;
+    use app\components\ReversibleListView;
     use app\models\Topic;
     use app\models\PostRead;
     use yii\widgets\Pjax;
@@ -27,7 +27,7 @@
                     <?php Pjax::begin([
                         'id' => 'shoutbox-pjax'
                     ]); ?>
-                    <?= ListView::widget([
+                    <?= ReversibleListView::widget([
                         'dataProvider' => $shoutADP,
                         'id' => 'shoutbox',
                         'layout' => "{items}\n{pager}",
@@ -35,6 +35,7 @@
                         'viewParams' => [
                             'fullView' => true,
                         ],
+                        'reverseSort' => true
                     ]) ?>
                     <?php Pjax::end(); ?>
                 </div>
