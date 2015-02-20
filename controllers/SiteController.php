@@ -13,7 +13,6 @@ use app\models\User;
 use app\models\LoginForm;
 use app\models\Category;
 use app\models\Subforum;
-use app\models\Topic;
 use app\models\Shout;
 
 class SiteController extends Controller
@@ -111,31 +110,6 @@ class SiteController extends Controller
         $viewData['dataProvider'] = $dataProvider;
 
         return $this->render('subforum', $viewData);
-
-    }
-
-    public function actionTopic ($id) {
-
-        $viewData = array();
-
-        $topic = Topic::findOne(['id' => $id]);
-        if ($topic === NULL) {
-            throw new HttpException(404, 'Dit topic kon niet worden gevonden.');
-        }
-
-        $dataProvider = new ActiveDataProvider([
-            'query' => $topic->getPosts()->orderBy([
-                'created_on' => SORT_ASC,
-            ])->with('user'),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
-
-        $viewData['topic'] = $topic;
-        $viewData['dataProvider'] = $dataProvider;
-
-        return $this->render('topic', $viewData);
 
     }
 

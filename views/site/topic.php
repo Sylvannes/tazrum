@@ -5,7 +5,7 @@
     $topic->getSubforum()->one();
     $this->title = $topic->title;
     $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $topic->subforum->name, 'url' => ['site/subforum', 'id' => $topic->subforum->id]];
-    $this->params['breadcrumbs'][] = ['label' => 'Topic: ' . $this->title, 'url' => ['site/topic', 'id' => $topic->id]];
+    $this->params['breadcrumbs'][] = ['label' => 'Topic: ' . $this->title, 'url' => ['/topic', 'id' => $topic->id]];
 ?>
 <div class="site-index">
     <div class="body-content">
