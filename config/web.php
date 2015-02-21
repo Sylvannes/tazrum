@@ -5,7 +5,10 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'activity'
+    ],
     'language' => 'nl_NL',
     'components' => [
         'request' => [
@@ -45,6 +48,9 @@ $config = [
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'activity' => 'app\modules\activity\Module',
+    ]
 ];
 
 if (YII_ENV_DEV) {

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\forms\SearchForm;
 use Yii;
 use yii\db\Expression;
 use yii\filters\AccessControl;
@@ -13,6 +14,7 @@ use app\models\LoginForm;
 use app\models\Category;
 use app\models\Shout;
 use app\models\forms\ShoutForm;
+use app\models\forms\PostSearchForm;
 
 class SiteController extends Controller
 {
@@ -74,7 +76,7 @@ class SiteController extends Controller
         ]);
         $shoutForm = new ShoutForm();
         if (Yii::$app->request->getIsPost()) {
-            $shoutForm->attributes = Yii::$app->request->post('ShoutForm');
+            $shoutForm->load(Yii::$app->request->post());
             if (!$shoutForm->validate() || !$shoutForm->create()) {
                 Yii::$app->getSession()->setFlash('danger', 'De shout kon niet worden opgeslagen.');
             }
@@ -88,10 +90,13 @@ class SiteController extends Controller
             ->all()
         ;
 
+        $postSearchForm = new PostSearchForm();
+
         $viewData['activeUsers'] = $activeUsers;
         $viewData['categories'] = $categories;
         $viewData['shoutADP'] = $shoutADP;
         $viewData['shoutForm'] = $shoutForm;
+        $viewData['postSearchForm'] = $postSearchForm;
 
         return $this->render('index', $viewData);
 

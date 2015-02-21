@@ -15,7 +15,7 @@
         $(document).on("pjax:beforeReplace", function(event, contents, options) {
             // TODO: Figure out a way to cancel pjax replace if content is the same.
         })
-        $("#shoutform-text").focus();
+        // $("#shoutform-text").focus();
     ');
 ?>
 <div class="site-index">
@@ -123,12 +123,33 @@
                 </div>
                 <div class="panel-body bg-tazrum-gradient">
                     <?php
-                        $i = 0;
-                        foreach ($activeUsers as $user) {
-                            ++$i;
-                            echo Html::encode($user->name) . ($i < count($activeUsers) ? ', ' : '');
-                        }
+                    $i = 0;
+                    foreach ($activeUsers as $user) {
+                        ++$i;
+                        echo $this->render('_username', ['user' => $user]) . ($i < count($activeUsers) ? ', ' : '');
+                    }
                     ?>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Zoeken</h4>
+                </div>
+                <div class="panel-body bg-tazrum-gradient">
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'SearchForm',
+                        'options' => [
+                            'class' => 'form-horizontal',
+                            'method' => 'get',
+                            'action' => '/search'
+                        ],
+                        'fieldConfig' => [
+                            'template' => "<div class=\"col-md-8\">{input}</div><div class=\"col-md-1\">" . Html::submitButton('Zoeken', ['class' => 'btn btn-success']) . "</div>\n<div class=\"col-md-8\">{error}</div>",
+                            'labelOptions' => ['class' => 'col-md-1 control-label'],
+                        ],
+                    ]) ?>
+                    <?= $form->field($postSearchForm, 'query') ?>
+                    <?php ActiveForm::end() ?>
                 </div>
             </div>
         </div>
