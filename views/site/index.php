@@ -5,6 +5,7 @@
     use app\models\Topic;
     use app\models\PostRead;
     use yii\widgets\Pjax;
+    use yii\widgets\ActiveForm;
     /* @var $this yii\web\View */
     $this->title = 'TaZrum';
     $this->registerJs('
@@ -14,6 +15,7 @@
         $(document).on("pjax:beforeReplace", function(event, contents, options) {
             // TODO: Figure out a way to cancel pjax replace if content is the same.
         })
+        $("#shoutform-text").focus();
     ');
 ?>
 <div class="site-index">
@@ -38,6 +40,19 @@
                         'reverseSort' => true
                     ]) ?>
                     <?php Pjax::end(); ?>
+                    <?php $form = ActiveForm::begin([
+                        'id' => 'ShoutForm',
+                        'options' => [
+                            'class' => 'form-horizontal',
+                            'method' => 'post',
+                        ],
+                        'fieldConfig' => [
+                            'template' => "<div class=\"col-md-11\">{input}</div><div class=\"col-md-1\">" . Html::submitButton('Shout', ['class' => 'btn btn-success']) . "</div>\n<div class=\"col-md-8\">{error}</div>",
+                            'labelOptions' => ['class' => 'col-md-1 control-label'],
+                        ],
+                    ]) ?>
+                    <?= $form->field($shoutForm, 'text') ?>
+                    <?php ActiveForm::end() ?>
                 </div>
             </div>
             <?php
@@ -97,6 +112,11 @@
             ?>
         </div>
         <div class="col-md-4">
+            <?php
+            foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
+                echo '<div class="alert alert-' . Html::encode($key) . '">' . Html::encode($message) . '</div>';
+            }
+            ?>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">Actieve gebruikers</h4>
