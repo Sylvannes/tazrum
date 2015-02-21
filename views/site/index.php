@@ -33,8 +33,8 @@
                     <?= ReversibleListView::widget([
                         'dataProvider' => $shoutADP,
                         'id' => 'shoutbox',
-                        'layout' => "{items}\n{pager}",
-                        'itemView' => '_shout',
+                        'layout' => "{items}",
+                        'itemView' => '/shout/_shout',
                         'viewParams' => [
                             'fullView' => true,
                         ],
@@ -43,12 +43,21 @@
                     <?php Pjax::end(); ?>
                     <?php $form = ActiveForm::begin([
                         'id' => 'ShoutForm',
+                        'action' => Url::toRoute(['/shout/create', 'from' => '/site/index']),
                         'options' => [
                             'class' => 'form-horizontal',
                             'method' => 'post',
                         ],
                         'fieldConfig' => [
-                            'template' => "<div class=\"col-md-11\">{input}</div><div class=\"col-md-1\">" . Html::submitButton('Shout', ['class' => 'btn btn-success']) . "</div>\n<div class=\"col-md-8\">{error}</div>",
+                            'template' =>
+                                "<div class=\"col-md-7\">{input}</div>" .
+                                "<div class=\"col-md-1\">" .
+                                    Html::submitButton('Shout', ['class' => 'btn btn-success']) .
+                                "</div>\n" .
+                                "<div class=\"col-md-1\">" .
+                                    Html::a(Html::button('Geschiedenis', ['class' => 'btn btn-info']), ['/shout/history']) .
+                                "</div>\n" .
+                                "<div class=\"col-md-8\">{error}</div>",
                             'labelOptions' => ['class' => 'col-md-1 control-label'],
                         ],
                     ]) ?>

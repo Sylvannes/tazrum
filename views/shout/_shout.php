@@ -12,11 +12,11 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Quote</a></li>
-                        <li><a href="#">Verwijderen</a></li>
+                        <li><?= Html::a('Verwijderen', ['/shout/delete', 'id' => $model->id]) ?></li>
                     </ul>
                 </div>
                 <small><?= Yii::$app->formatter->asTime($model->created_on, 'short') ?></small>
-                <?= $this->render('_username', ['user' => $model->user]) ?>:
+                <?= $this->render('/site/_username', ['user' => $model->user]) ?>:
             </div>
             <div class="col-md-10">
                 <?= HtmlPurifier::process($model->text) ?>

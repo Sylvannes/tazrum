@@ -58,7 +58,7 @@ class SiteController extends Controller
 
     public function actionIndex () {
 
-        $viewData = array();
+        $viewData = [];
 
         $categories =
             Category::find()
@@ -73,17 +73,10 @@ class SiteController extends Controller
                 ->with('user')
                 ->with('toUser'),
             'pagination' => [
-                'pageSize' => 6,
+                'pageSize' => 8,
             ],
         ]);
         $shoutForm = new ShoutForm();
-        if (Yii::$app->request->getIsPost()) {
-            $shoutForm->load(Yii::$app->request->post());
-            if (!$shoutForm->validate() || !$shoutForm->create()) {
-                Yii::$app->getSession()->setFlash('danger', 'De shout kon niet worden opgeslagen.');
-            }
-            return $this->redirect('/site/index');
-        }
 
         $activeUsers =
             User::find()
@@ -140,7 +133,7 @@ class SiteController extends Controller
 
     public function actionMemberlist () {
 
-        $viewData = array();
+        $viewData = [];
 
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
