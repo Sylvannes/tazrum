@@ -162,6 +162,7 @@ class m150220_195615_forum_core extends Migration
         $this->addForeignKey('fk_subforum_topic', '{{%topic}}', 'subforum_id', '{{%subforum}}', 'id', 'RESTRICT', 'RESTRICT' );
         $this->addForeignKey('fk_user_topic', '{{%topic}}', 'user_id', '{{%user}}', 'id', 'RESTRICT', 'RESTRICT' );
         $this->addForeignKey('fk_last_post_user_topic', '{{%topic}}', 'last_post_user_id', '{{%user}}', 'id', 'RESTRICT', 'RESTRICT' );
+        $this->createIndex('private', '{{%topic}}', 'private');
         $this->createIndex('last_post_on', '{{%topic}}', 'last_post_on');
 
         // FK and indices for user

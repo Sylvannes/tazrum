@@ -190,10 +190,13 @@
                     <h4 class="panel-title">Recente topic activiteit</h4>
                 </div>
                 <div class="panel-body bg-tazrum-gradient">
+                    <?php Pjax::begin([
+                        'id' => 'recent-topics-pjax'
+                    ]); ?>
                     <?= GridView::widget([
                         'dataProvider' => $recentTopicADP,
                         'id' => 'recent-topics',
-                        'layout' => "{items}",
+                        'layout' => "{items}\n{pager}",
                         'columns' => [
                             [
                                 'format' => 'html',
@@ -211,6 +214,7 @@
                             ],
                         ]
                     ]) ?>
+                    <?php Pjax::end(); ?>
                 </div>
             </div>
         </div>
