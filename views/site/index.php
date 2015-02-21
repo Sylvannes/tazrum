@@ -6,6 +6,7 @@
     use app\models\PostRead;
     use yii\widgets\Pjax;
     use yii\widgets\ActiveForm;
+    use yii\grid\GridView;
     /* @var $this yii\web\View */
     $this->title = 'TaZrum';
     $this->registerJs('
@@ -150,6 +151,31 @@
                     ]) ?>
                     <?= $form->field($postSearchForm, 'query') ?>
                     <?php ActiveForm::end() ?>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Ongelezen topics</h4>
+                </div>
+                <div class="panel-body bg-tazrum-gradient">
+                    <?php Pjax::begin([
+                        'id' => 'unread-topics-pjax'
+                    ]); ?>
+                    <?= GridView::widget([
+                        'dataProvider' => $unreadTopicADP,
+                        'id' => 'unread-topics',
+                        'layout' => "{items}\n{pager}",
+                        'columns' => [
+                            'title',
+                            [
+                                'label' => 'Subforum',
+                                'value' => function ($topic) {
+                                    return 'TODO'; // return $topic->subforum->name;
+                                },
+                            ],
+                        ]
+                    ]) ?>
+                    <?php Pjax::end(); ?>
                 </div>
             </div>
         </div>
