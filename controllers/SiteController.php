@@ -12,6 +12,7 @@ use app\models\User;
 use app\models\LoginForm;
 use app\models\Category;
 use app\models\Shout;
+use app\models\forms\ShoutForm;
 
 class SiteController extends Controller
 {
@@ -71,6 +72,14 @@ class SiteController extends Controller
                 'pageSize' => 6,
             ],
         ]);
+        $shoutForm = new ShoutForm();
+        if (Yii::$app->request->getIsPost()) {
+            $shoutForm->attributes = Yii::$app->request->post('ShoutForm');
+            if (!$shoutForm->validate() || !$shoutForm->create()) {
+                Yii::$app->getSession()->setFlash('danger', 'De shout kon niet worden opgeslagen.');
+            }
+            return $this->redirect('/site/index');
+        }
 
         $activeUsers =
             User::find()
@@ -82,6 +91,7 @@ class SiteController extends Controller
         $viewData['activeUsers'] = $activeUsers;
         $viewData['categories'] = $categories;
         $viewData['shoutADP'] = $shoutADP;
+        $viewData['shoutForm'] = $shoutForm;
 
         return $this->render('index', $viewData);
 
