@@ -5,7 +5,7 @@
 <div class="panel panel-shout">
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <div class="btn-group">
                     <button type="button" class="btn btn-shout dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <span class="caret"></span>
@@ -16,8 +16,6 @@
                     </ul>
                 </div>
                 <small><?= Yii::$app->formatter->asTime($model->created_on, 'short') ?></small>
-            </div>
-            <div class="col-md-1">
                 <?= $this->render('_username', ['user' => $model->user]) ?>:
             </div>
             <div class="col-md-10">
