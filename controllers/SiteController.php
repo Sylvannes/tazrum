@@ -115,12 +115,24 @@ class SiteController extends Controller
             ],
         ]);
 
+        $recentTopicADP = new ActiveDataProvider([
+            'query' => Topic::find()
+                ->with('subforum')
+                ->where(['private' => 0])
+                ->orderBy(['last_post_on' => SORT_DESC,])
+                ->limit(10),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
         $viewData['activeUsers'] = $activeUsers;
         $viewData['categories'] = $categories;
         $viewData['shoutADP'] = $shoutADP;
         $viewData['shoutForm'] = $shoutForm;
         $viewData['postSearchForm'] = $postSearchForm;
         $viewData['unreadTopicADP'] = $unreadTopicADP;
+        $viewData['recentTopicADP'] = $recentTopicADP;
 
         return $this->render('index', $viewData);
 

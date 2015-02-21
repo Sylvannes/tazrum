@@ -166,16 +166,51 @@
                         'id' => 'unread-topics',
                         'layout' => "{items}\n{pager}",
                         'columns' => [
-                            'title',
                             [
+                                'format' => 'html',
+                                'label' => 'Topic',
+                                'value' => function ($topic) {
+                                    return Html::a($topic->title, Url::toRoute(['/topic', 'id' => $topic->id]));
+                                }
+                            ],
+                            [
+                                'format' => 'html',
                                 'label' => 'Subforum',
                                 'value' => function ($topic) {
-                                    return 'TODO'; // return $topic->subforum->name;
+                                    return Html::a($topic->subforum->name, Url::toRoute(['/subforum', 'id' => $topic->subforum->id]));
                                 },
                             ],
                         ]
                     ]) ?>
                     <?php Pjax::end(); ?>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Recente topic activiteit</h4>
+                </div>
+                <div class="panel-body bg-tazrum-gradient">
+                    <?= GridView::widget([
+                        'dataProvider' => $recentTopicADP,
+                        'id' => 'recent-topics',
+                        'layout' => "{items}",
+                        'columns' => [
+                            [
+                                'format' => 'html',
+                                'label' => 'Topic',
+                                'value' => function ($topic) {
+                                    return Html::a($topic->title, Url::toRoute(['/topic', 'id' => $topic->id]));
+                                }
+                            ],
+                            [
+                                'format' => 'html',
+                                'label' => 'Subforum',
+                                'value' => function ($topic) {
+                                    return Html::a($topic->subforum->name, Url::toRoute(['/subforum', 'id' => $topic->subforum->id]));
+                                },
+                            ],
+                        ]
+                    ]) ?>
                 </div>
             </div>
         </div>
