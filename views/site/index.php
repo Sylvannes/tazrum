@@ -179,7 +179,7 @@
                                 'format' => 'html',
                                 'label' => 'Topic',
                                 'value' => function ($topic) {
-                                    return Html::a($topic->title, Url::toRoute(['/topic', 'id' => $topic->id]));
+                                    return '<span class="glyphicon glyphicon-envelope glyphicon-unread"></span> ' . Html::a($topic->title, Url::toRoute(['/topic', 'id' => $topic->id]));
                                 }
                             ],
                             [
