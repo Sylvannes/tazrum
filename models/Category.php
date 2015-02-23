@@ -38,8 +38,8 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels () {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'order' => 'Order',
+            'name' => 'Naam',
+            'order' => 'Volgorde',
         ];
     }
 

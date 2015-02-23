@@ -47,10 +47,10 @@ class Subforum extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'desc' => 'Desc',
-            'category_id' => 'Category ID',
-            'last_topic_id' => 'Last Topic ID',
+            'name' => 'Naam',
+            'desc' => 'Omschrijving',
+            'category_id' => 'Categorie',
+            'last_topic_id' => 'Laatste topic',
         ];
     }
 

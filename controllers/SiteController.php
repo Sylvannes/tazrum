@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\forms\SearchForm;
 use Yii;
 use yii\db\Expression;
 use yii\filters\AccessControl;
@@ -11,10 +10,10 @@ use yii\filters\VerbFilter;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
 use app\models\User;
-use app\models\LoginForm;
 use app\models\Category;
 use app\models\Shout;
 use app\models\Topic;
+use app\models\forms\LoginForm;
 use app\models\forms\ShoutForm;
 use app\models\forms\PostSearchForm;
 

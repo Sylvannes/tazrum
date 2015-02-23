@@ -90,10 +90,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             'id' => 'ID',
             'name' => 'Gebruikersnaam',
-            'password' => 'Passwd',
+            'password' => 'Wachtwoord',
             'auth_key' => 'Auth key',
-            'email' => 'E-Mail',
-            'location' => 'Locatie',
+            'email' => 'E-mail adres',
+            'location' => 'Woonplaats',
             'posts' => 'Posts',
             'shouts' => 'Shouts',
             'topics' => 'Topics',
@@ -101,28 +101,28 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'articles' => 'Artikelen',
             'shoutrpg_wins' => 'ShoutRPG Wins',
             'shoutrpg_losses' => 'ShoutRPG Losses',
-            'hide_email' => 'Hide Email',
+            'hide_email' => 'Verberg e-mail adres',
             'birth_date' => 'Geboortedatum',
-            'last_login' => 'Last Login',
-            'last_ip' => 'Last Ip',
+            'last_login' => 'Laatste login',
+            'last_ip' => 'Laatste IP',
             'registered_on' => 'Geregistreerd op',
-            'banned_on' => 'Banned On',
-            'deleted_on' => 'Deleted On',
-            'banned_by_user_id' => 'Banned By User ID',
-            'deleted_by_user_id' => 'Deleted By User ID',
+            'banned_on' => 'Gebanned op',
+            'deleted_on' => 'Verwijderd op',
+            'banned_by_user_id' => 'Gebanned door',
+            'deleted_by_user_id' => 'Verwijderd door',
             'status' => 'Status',
-            'activation_code' => 'Activation Code',
+            'activation_code' => 'Activatiecode',
             'modules' => 'Modules',
-            'achievement_points' => 'Achievement Points',
+            'achievement_points' => 'Achievement punten',
             'avatar' => 'Avatar',
             'signature' => 'Signature',
-            'profile_text' => 'Profile Text',
-            'forum_location' => 'Forum Location',
-            'real_name' => 'Real Name',
-            'gender' => 'Gender',
-            'private_messages' => 'Private Messages',
-            'custom_status' => 'Custom Status',
-            'last_flutter' => 'Last Flutter',
+            'profile_text' => 'Profieltekst',
+            'forum_location' => 'Forum locatie',
+            'real_name' => 'Echte naam',
+            'gender' => 'Geslacht',
+            'private_messages' => 'Priveberichten',
+            'custom_status' => 'Custom status',
+            'last_flutter' => 'Laatste flutter',
             'theme' => 'Theme',
         ];
     }
@@ -136,7 +136,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'topic_id' => $post->topic_id,
                 'post_id' => $post->id
             ])->one();
-        ;
 
         return ($lastPostRead instanceof \app\models\PostRead);
 
@@ -146,27 +145,20 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
         if ($this->posts >= 500) {
             return $this->custom_status;
-        }
-        elseif ($this->posts < 10) {
-            return 'Slootwaterdrinker';
-        }
-        elseif ($this->posts >= 10 && $this->posts < 50) {
-            return 'Shandydrinker';
-        }
-        elseif ($this->posts >= 50 && $this->posts < 100) {
-            return 'Bierdrinker';
-        }
-        elseif ($this->posts >= 100 && $this->posts < 200) {
-            return 'Wijndrinker';
-        }
-        elseif ($this->posts >= 200 && $this->posts < 300) {
-            return 'Rumdrinker';
-        }
-        elseif ($this->posts >= 300 && $this->posts < 400) {
-            return 'Vodkadrinker';
-        }
-        elseif ($this->posts >= 400) {
+        } else if ($this->posts >= 400) {
             return 'Whiskeydrinker';
+        } else if ($this->posts >= 300) {
+            return 'Vodkadrinker';
+        } else if ($this->posts >= 200) {
+            return 'Rumdrinker';
+        } else if ($this->posts >= 100) {
+            return 'Wijndrinker';
+        } else if ($this->posts >= 50) {
+            return 'Bierdrinker';
+        } else if ($this->posts >= 10) {
+            return 'Shandydrinker';
+        } else {
+            return 'Slootwaterdrinker';
         }
 
     }
@@ -176,7 +168,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getPosts()
     {
-        return $this->hasMany(Post::className(), ['last_edited_by_user_id' => 'id']);
+        return $this->hasMany(Post::className(), ['user_id' => 'id']);
     }
 
     /**
@@ -184,7 +176,23 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getTopics()
     {
-        return $this->hasMany(Topic::className(), ['last_post_user_id' => 'id']);
+        return $this->hasMany(Topic::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getShouts()
+    {
+        return $this->hasMany(Shout::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDeletedUsers()
+    {
+        return $this->hasMany(User::className(), ['deleted_by_user_id' => 'id']);
     }
 
     /**
@@ -198,7 +206,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUsers()
+    public function getBannedUsers()
     {
         return $this->hasMany(User::className(), ['banned_by_user_id' => 'id']);
     }

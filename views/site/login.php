@@ -4,7 +4,7 @@
 
     /* @var $this yii\web\View */
     /* @var $form yii\bootstrap\ActiveForm */
-    /* @var $model app\models\LoginForm */
+    /* @var $model app\models\forms\LoginForm */
 
     $this->title = 'Inloggen';
     $this->params['breadcrumbs'][] = $this->title;

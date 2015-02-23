@@ -47,9 +47,9 @@ class PostRead extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'topic_id' => 'Topic ID',
-            'post_id' => 'Post ID',
+            'user_id' => 'Gebruiker',
+            'topic_id' => 'Topic',
+            'post_id' => 'Post',
             'created_on' => 'Created On',
         ];
     }
