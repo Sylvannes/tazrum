@@ -8,14 +8,15 @@
             <div class="col-md-2">
                 <div class="btn-group">
                     <button type="button" class="btn btn-shout dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <?= Yii::$app->formatter->asTime($model->created_on) ?> <span class="caret"></span>
+                        <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Quote</a></li>
-                        <li><a href="#">Verwijderen</a></li>
+                        <li><?= Html::a('Verwijderen', ['/shout/delete', 'id' => $model->id]) ?></li>
                     </ul>
                 </div>
-                <?= $this->render('_username', ['user' => $model->user]) ?>:
+                <small><?= Yii::$app->formatter->asTime($model->created_on, 'short') ?></small>
+                <?= $this->render('/site/_username', ['user' => $model->user]) ?>:
             </div>
             <div class="col-md-10">
                 <?= HtmlPurifier::process($model->text) ?>
