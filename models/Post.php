@@ -48,6 +48,19 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function afterSave ($insert, $changedAttributes) {
+        if ($insert) {
+            // Update post count of author
+            $user = $this->getUser()->one();
+            $user->posts++;
+            $user->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
