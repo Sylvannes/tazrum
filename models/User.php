@@ -72,7 +72,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['posts', 'shouts', 'topics', 'polls', 'articles', 'shoutrpg_wins', 'shoutrpg_losses', 'hide_email', 'banned_by_user_id', 'deleted_by_user_id', 'achievement_points', 'private_messages', 'last_flutter', 'theme'], 'integer'],
             [['birth_date', 'last_login', 'registered_on', 'banned_on', 'deleted_on'], 'safe'],
-            [['last_ip', 'registered_on', 'forum_location'], 'required'],
+            [['last_ip', 'registered_on', 'name', 'email', 'rank'], 'required'],
             [['status', 'signature', 'profile_text', 'forum_location', 'gender'], 'string'],
             [['name'], 'string', 'max' => 20],
             [['password', 'auth_key', 'activation_code', 'custom_status'], 'string', 'max' => 32],
@@ -217,6 +217,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public static function findIdentity($id)
     {
         return static::findOne($id);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSalt()
+    {
+        return $this->hasOne(UserSalt::className(), ['user_id' => 'id']);
     }
 
     /**
