@@ -92,9 +92,12 @@ class Topic extends \yii\db\ActiveRecord
 
     /**
      * @return \yii\db\ActiveQuery
+     * @deprecated This method does not make any sense. You never want to use it
+     * and the name is also confusing. We should remove it.
      */
     public function getSubforums()
     {
+        Yii::warning('Deprecated.', __METHOD__);
         return $this->hasMany(Subforum::className(), ['last_topic_id' => 'id']);
     }
 

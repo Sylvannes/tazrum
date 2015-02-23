@@ -59,8 +59,8 @@ class Shout extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'to_user_id' => 'To User ID',
+            'user_id' => 'Auteur',
+            'to_user_id' => 'Ontvanger',
             'text' => 'Text',
             'created_on' => 'Created On',
         ];

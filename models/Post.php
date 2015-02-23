@@ -65,13 +65,13 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
-            'topic_id' => 'Topic ID',
+            'user_id' => 'Auteur',
+            'topic_id' => 'Topic',
             'text' => 'Text',
             'created_on' => 'Created On',
-            'edits' => 'Edits',
-            'last_edited_by_user_id' => 'Last Edited By User ID',
-            'last_edited_on' => 'Last Edited On',
+            'edits' => 'Wijzigingen',
+            'last_edited_by_user_id' => 'Laatste wijziging door',
+            'last_edited_on' => 'Laatste wijziging',
             'fluttered' => 'Fluttered',
         ];
     }
