@@ -1,89 +1,89 @@
-Yii 2 Basic Application Template
-================================
+TaZrum 4
+========
 
-Yii 2 Basic Application Template is a skeleton Yii 2 application best for
-rapidly creating small projects.
+Welcome to the TaZrum 4 source code!
 
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
+[TaZrum](http://www.tazrum.nl/) is the best forum on the internet. Its community
+mainly focuses on drinking rum, but other spirits, liquors, cocktails or even
+any other kind of brewed alcoholic beverage are also paid plenty of attention.
 
 
 REQUIREMENTS
 ------------
 
-The minimum requirement by this application template that your Web server supports PHP 5.4.0.
+The project requires a web server running PHP 5.6. It uses composer for PHP
+package management and MySQL for the data storage.
 
 
-INSTALLATION
-------------
+FIRST TIME SETUP
+----------------
 
-### Install from an Archive File
+### Clone the project
 
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
+	$ git clone https://github.com/SagaLhan/tazrum.git
 
 
-### Install via Composer
+### Install Composer packages
 
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+If you do not have [Composer](http://getcomposer.org/), you may install it by
+following the instructions at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
-You can then install this application template using the following command:
+You can then install the required packages of this project using the following
+command:
 
-~~~
-php composer.phar global require "fxp/composer-asset-plugin:1.0.0-beta4"
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
+	$ composer update
 
 
-CONFIGURATION
--------------
+### Prepare the database
 
-### Database
+To build the database, first set the credentials to your database in
+`config/db.php`. You can use `db.php.default` as an example.
 
-Edit the file `config/db.php` with real data, for example:
+Make sure the database with the specified name (default `tazrum4`) exists on the
+database server. It does not need to contain any tables. The character set
+should be `utf8` and the default collation should be `utf8_general_ci`.
 
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
+Then, run the Yii migration utility to create the database structure:
 
-**NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
+	$ ./yii migrate
 
-Also check and edit the other files in the `config/` directory to customize your application.
+It is recommended to insert an initial data set for testing, with the following
+command:
+
+	$ ./yii debugdata/create
+
+To get rid of the debug data again, use the following command:
+
+	$ ./yii debugdata/destroy
+
+### Configure the web server
+
+Next, configure your webserver to serve the files, and make sure to add
+configuration for Yii rewrite rules. An example configuration:
+
+	<VirtualHost *:80>
+		DocumentRoot "/home/taz/personal/tazrum/web"
+		ServerName tazrum.local
+
+		<Directory "/home/taz/personal/tazrum/web">
+			Options Indexes FollowSymLinks
+			AllowOverride All
+			Require all granted
+
+			RewriteEngine on
+
+			RewriteCond %{REQUEST_FILENAME} !-f
+			RewriteCond %{REQUEST_FILENAME} !-d 
+
+			RewriteRule . index.php
+		</Directory>
+	</VirtualHost>
+
+
+### Configure hosts file
+
+Add `127.0.0.1` to your hosts file, named as `tazrum.local`.
+
+Now you should be able to access the application through the following URL:
+
+	http://tazrum.local/
