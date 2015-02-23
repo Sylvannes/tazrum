@@ -11,13 +11,13 @@ class Module extends \yii\base\Module {
 
         parent::init();
 
-        if (!Yii::$app->user->isGuest) {
-            register_shutdown_function(function(){
+        register_shutdown_function(function(){
+            if (!Yii::$app->user->isGuest) {
                 Yii::trace('Shutdown function to update last_login executing.', __METHOD__);
                 Yii::$app->user->identity->last_login = new Expression('NOW()');
                 Yii::$app->user->identity->save();
-            });
-        }
+            }
+        });
 
     }
 
