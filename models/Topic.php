@@ -52,6 +52,19 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function afterSave ($insert, $changedAttributes) {
+        if ($insert) {
+            // Update topic count of author
+            $user = $this->getUser()->one();
+            $user->topics++;
+            $user->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [

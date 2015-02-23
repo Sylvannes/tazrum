@@ -42,6 +42,19 @@ class Shout extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function afterSave ($insert, $changedAttributes) {
+        if ($insert) {
+            // Update shout count of author
+            $user = $this->getUser()->one();
+            $user->shouts++;
+            $user->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
