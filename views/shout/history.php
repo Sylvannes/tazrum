@@ -4,10 +4,14 @@
     use yii\widgets\Pjax;
     use yii\widgets\ActiveForm;
     use app\components\ReversibleListView;
+    use app\assets\ExpandedJQueryAsset;
     /* @var $this yii\web\View */
     $this->title = 'Shout geschiedenis';
     $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/shouthistory'];
-
+    ExpandedJQueryAsset::register($this);
+    $this->registerJs('
+        $("#shoutform-text").scrollTo();
+    ');
 ?>
 <div class="site-index">
     <div class="body-content">
@@ -22,7 +26,7 @@
                 <?= ReversibleListView::widget([
                     'dataProvider' => $shoutADP,
                     'id' => 'shoutbox',
-                    'layout' => "{items}\n{pager}",
+                    'layout' => "{pager}\n{items}\n{pager}",
                     'itemView' => '/shout/_shout',
                     'viewParams' => [
                         'fullView' => true,

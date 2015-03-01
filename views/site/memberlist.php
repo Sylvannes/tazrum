@@ -1,5 +1,6 @@
 <?php
     use yii\grid\GridView;
+    use yii\widgets\Pjax;
     /* @var $this yii\web\View */
     $this->title = 'Ledenlijst';
     $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/memberlist'];
@@ -16,8 +17,12 @@
                 <h4 class="panel-title">Ledenlijst</h4>
             </div>
             <div class="panel-body bg-tazrum-gradient">
+                <?php Pjax::begin([
+                    'id' => 'memberlist-pjax'
+                ]); ?>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
+                    'layout' => "{pager}\n{items}\n{pager}",
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         ['attribute' => 'name', 'content' => 'renderUsername'],
@@ -32,6 +37,7 @@
                         'registered_on'
                     ]
                 ]) ?>
+                <?php Pjax::end(); ?>
              </div>
         </div>
     </div>

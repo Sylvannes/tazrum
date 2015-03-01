@@ -296,3 +296,7 @@ a:hover > .panel-topic-read > .panel-body {
 .table-striped > tbody > tr:nth-child(odd) {
     background-color: #F5FAFF;
 }
+
+.glyphicon-unread {
+    color: #FFE2AA;
+}
