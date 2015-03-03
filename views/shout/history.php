@@ -10,7 +10,8 @@
     $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/shouthistory'];
     ExpandedJQueryAsset::register($this);
     $this->registerJs('
-        $("#shoutform-text").scrollTo();
+        $.scrollTo("#shoutform-text", 1000);
+        $("#shoutform-text").focus();
     ');
 ?>
 <div class="site-index">
