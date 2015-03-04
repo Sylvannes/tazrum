@@ -10,17 +10,18 @@ namespace app\assets;
 use yii\web\AssetBundle;
 
 /**
+ * Asset bundle for the Twitter bootstrap css files.
+ *
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class ExpandedJQueryAsset extends AssetBundle
+class ScrollToAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@vendor/flesler/jquery.scrollto';
     public $css = [
     ];
     public $js = [
-        'js/jquery.scrollTo.min.js'
+        'jquery.scrollTo.min.js'
     ];
     public $depends = [
         'app\assets\AppAsset',
