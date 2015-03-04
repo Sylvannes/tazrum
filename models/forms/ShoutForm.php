@@ -5,7 +5,6 @@ namespace app\models\forms;
 use Yii;
 use yii\base\Model;
 use app\models\Shout;
-use yii\db\Expression;
 
 /**
  * ShoutForm is the model that handles shouts.
@@ -38,7 +37,6 @@ class ShoutForm extends Model {
         $shout = new Shout();
         $shout->user_id = Yii::$app->user->id;
         $shout->text = $this->text;
-        $shout->created_on = new Expression('NOW()');
 
         return ($shout->validate() && $shout->save());
 
