@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "tazrum4.shout".
@@ -37,6 +38,16 @@ class Shout extends \yii\db\ActiveRecord
             [['text'], 'string'],
             [['created_on'], 'safe']
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave ($insert) {
+        if ($insert) {
+            $this->created_on = new Expression('NOW()');
+        }
+        return parent::beforeSave($insert);
     }
 
     /**
