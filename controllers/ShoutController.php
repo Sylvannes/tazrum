@@ -3,14 +3,31 @@
 namespace app\controllers;
 
 use Yii;
-use \yii\web\Controller;
+use yii\web\Controller;
 use yii\web\HttpException;
-use \yii\data\ActiveDataProvider;
+use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 
 use app\models\Shout;
 use app\models\forms\ShoutForm;
 
 class ShoutController extends Controller {
+
+	public function behaviors () {
+		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'only' => ['create', 'delete'],
+				'rules' => [
+					[
+						'actions' => ['create', 'delete'], // TODO: Restrict 'delete' to mods or higher
+						'allow' => true,
+						'roles' => ['@'],
+					]
+				],
+			],
+		];
+	}
 
     public function actionHistory () {
 
