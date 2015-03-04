@@ -4,11 +4,11 @@
     use yii\widgets\Pjax;
     use yii\widgets\ActiveForm;
     use app\components\ReversibleListView;
-    use app\assets\ExpandedJQueryAsset;
+    use app\assets\ScrollToAsset;
     /* @var $this yii\web\View */
     $this->title = 'Shout geschiedenis';
     $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => '/site/shouthistory'];
-    ExpandedJQueryAsset::register($this);
+    ScrollToAsset::register($this);
     $this->registerJs('
         $.scrollTo("#shoutform-text", 1000);
         $("#shoutform-text").focus();
