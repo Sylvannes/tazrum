@@ -18,6 +18,10 @@ body {
     background-attachment: fixed;
 }
 
+a {
+    color: #2b44b7;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
@@ -135,11 +139,11 @@ a:hover > .panel-subforum > .panel-body {
 }
 
 .panel-topic-unread {
-    border-color: #FFE2AA;
+    border-color: #ffab72;
 }
 .panel-topic-unread > .panel-heading {
     color: #000;
-    background-color: #FFE2AA;
+    background-color: #ffab72;
 }
 a > .panel-topic-unread > .panel-body  {
     color: #000;
@@ -298,5 +302,5 @@ a:hover > .panel-topic-read > .panel-body {
 }
 
 .glyphicon-unread {
-    color: #FFE2AA;
+    color: #ffab72;
 }
