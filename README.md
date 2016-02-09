@@ -69,13 +69,6 @@ configuration for Yii rewrite rules. An example configuration:
 			Options Indexes FollowSymLinks
 			AllowOverride All
 			Require all granted
-
-			RewriteEngine on
-
-			RewriteCond %{REQUEST_FILENAME} !-f
-			RewriteCond %{REQUEST_FILENAME} !-d 
-
-			RewriteRule . index.php
 		</Directory>
 	</VirtualHost>
 
