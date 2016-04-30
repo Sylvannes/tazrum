@@ -55,16 +55,16 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionIndex () {
+    public function actionIndex()
+    {
 
         $viewData = [];
 
         $categories =
             Category::find()
-            ->with('subforums.lastTopic.lastPost.postRead')
-            ->with('subforums.lastTopic.lastPost.user')
-            ->all()
-        ;
+                ->with('subforums.lastTopic.lastPost.postRead')
+                ->with('subforums.lastTopic.lastPost.user')
+                ->all();
 
         $shoutADP = new ActiveDataProvider([
             'query' => Shout::find()
@@ -79,10 +79,9 @@ class SiteController extends Controller
 
         $activeUsers =
             User::find()
-            ->where(['>=', 'last_login', new Expression('DATE_SUB(NOW(), INTERVAL 10 MINUTE)')])
-            ->orderBy(['last_login' => SORT_DESC])
-            ->all()
-        ;
+                ->where(['>=', 'last_login', new Expression('DATE_SUB(NOW(), INTERVAL 10 MINUTE)')])
+                ->orderBy(['last_login' => SORT_DESC])
+                ->all();
 
         $postSearchForm = new PostSearchForm();
 
@@ -100,7 +99,7 @@ class SiteController extends Controller
                         ])
                     ,
                 ])
-                ->andWhere(['private' => 0])
+                ->andWhere(['not', ['subforum_id' => null]])
                 ->orderBy(['last_post_on' => SORT_DESC]),
             'pagination' => [
                 'pageSize' => 10,
@@ -110,7 +109,7 @@ class SiteController extends Controller
         $recentTopicADP = new ActiveDataProvider([
             'query' => Topic::find()
                 ->with('subforum')
-                ->where(['private' => 0])
+                ->where(['not', ['subforum_id' => null]])
                 ->orderBy(['last_post_on' => SORT_DESC,])
                 ->limit(10),
             'pagination' => [
@@ -130,7 +129,8 @@ class SiteController extends Controller
 
     }
 
-    public function actionMemberlist () {
+    public function actionMemberlist()
+    {
 
         $viewData = [];
 

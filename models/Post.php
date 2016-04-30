@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tazrum4.post".
+ * This is the model class for table "tazrum.post".
  *
  * @property integer $id
  * @property integer $user_id
@@ -29,7 +29,7 @@ class Post extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tazrum4.post';
+        return 'tazrum.post';
     }
 
     /**

@@ -7,7 +7,7 @@ use yii\base\ErrorException;
 
 
 /**
- * This is the model class for table "tazrum4.user".
+ * This is the model class for table "tazrum.user".
  *
  * @property integer $id
  * @property string $name
@@ -61,7 +61,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function tableName()
     {
-        return 'tazrum4.user';
+        return 'tazrum.user';
     }
 
     /**
