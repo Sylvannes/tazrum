@@ -6,7 +6,7 @@ use Yii;
 use yii\db\Expression;
 
 /**
- * This is the model class for table "tazrum4.shout".
+ * This is the model class for table "tazrum.shout".
  *
  * @property integer $id
  * @property integer $user_id
@@ -24,7 +24,7 @@ class Shout extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tazrum4.shout';
+        return 'tazrum.shout';
     }
 
     /**

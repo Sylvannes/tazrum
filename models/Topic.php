@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tazrum4.topic".
+ * This is the model class for table "tazrum.topic".
  *
  * @property integer $id
  * @property integer $subforum_id
@@ -13,7 +13,6 @@ use Yii;
  * @property integer $user_id
  * @property integer $sticky
  * @property integer $locked
- * @property integer $private
  * @property string $created_on
  * @property integer $last_post_id
  * @property integer $last_post_user_id
@@ -33,7 +32,7 @@ class Topic extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tazrum4.topic';
+        return 'tazrum.topic';
     }
 
     /**
@@ -42,7 +41,7 @@ class Topic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['subforum_id', 'user_id', 'sticky', 'locked', 'private', 'last_post_id', 'last_post_user_id'], 'integer'],
+            [['subforum_id', 'user_id', 'sticky', 'locked', 'last_post_id', 'last_post_user_id'], 'integer'],
             [['user_id', 'created_on'], 'required'],
             [['created_on', 'last_post_on'], 'safe'],
             [['title'], 'string', 'max' => 128]
@@ -52,7 +51,8 @@ class Topic extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function afterSave ($insert, $changedAttributes) {
+    public function afterSave($insert, $changedAttributes)
+    {
         if ($insert) {
             // Update topic count of author
             $user = $this->getUser()->one();

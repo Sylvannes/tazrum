@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tazrum4.subforum".
+ * This is the model class for table "tazrum.subforum".
  *
  * @property integer $id
  * @property string $name
@@ -24,7 +24,7 @@ class Subforum extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tazrum4.subforum';
+        return 'tazrum.subforum';
     }
 
     /**

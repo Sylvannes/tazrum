@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tazrum4.category".
+ * This is the model class for table "tazrum.category".
  *
  * @property integer $id
  * @property string $name
@@ -19,7 +19,7 @@ class Category extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public static function tableName () {
-        return 'tazrum4.category';
+        return 'tazrum.category';
     }
 
     /**

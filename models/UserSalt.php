@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tazrum4.user_salt".
+ * This is the model class for table "tazrum.user_salt".
  *
  * @property integer $id
  * @property integer $user_id
@@ -20,7 +20,7 @@ class UserSalt extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tazrum4.user_salt';
+        return 'tazrum.user_salt';
     }
 
     /**
