@@ -10,7 +10,7 @@
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <div class="panel panel-primary">
+    <div class="panel panel-tazrum">
         <div class="panel-heading">
             <h4 class="panel-title">Inloggen</h4>
         </div>

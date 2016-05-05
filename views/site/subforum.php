@@ -6,6 +6,14 @@
     $this->title = $subforum->name;
     $this->params['breadcrumbs'][] = ['label' => 'Subforum: ' . $this->title, 'url' => ['/site/subforum', 'id' => $subforum->id]];
 
+    function renderTopicIcon (\app\models\Topic $topic) {
+        $glyphicon = 'envelope';
+        if ((int)$topic->locked === 1) {
+            $glyphicon = 'lock';
+        }
+        return '<span class="glyphicon glyphicon-' . $glyphicon . '""></span>';
+    }
+
     // TODO: The following functions can probably better be replaced with some sort of custom formatter that creates links out of such data.
     function renderTopicTitle (\app\models\Topic $topic) {
         return Html::a(Html::encode($topic->title), ['/topic', 'id' => $topic->id]);
@@ -19,7 +27,7 @@
 ?>
 <div class="site-index">
     <div class="body-content">
-        <div class="panel panel-primary">
+        <div class="panel panel-tazrum">
             <div class="panel-heading">
                 <h4 class="panel-title">Subforum: <?= Html::encode($subforum->name) ?></h4>
             </div>
@@ -31,6 +39,7 @@
                     'dataProvider' => $dataProvider,
                     'layout' => "{pager}\n{items}\n{pager}",
                     'columns' => [
+                        ['content' => 'renderTopicIcon'],
                         ['attribute' => 'title', 'content' => 'renderTopicTitle'],
                         'created_on',
                         'last_post_on',
