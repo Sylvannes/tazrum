@@ -203,7 +203,14 @@ a:hover > .panel-topic-read > .panel-body {
     border-color: #CCCCFF;
 }
 .panel-post > .panel-heading {
-    background-color: #CCCCFF;
+    background: rgba(204,204,255,1);
+    background: -moz-linear-gradient(left, rgba(204,204,255,1) 0%, rgba(204,204,255,1) 41%, rgba(213,140,255,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(204,204,255,1)), color-stop(41%, rgba(204,204,255,1)), color-stop(100%, rgba(213,140,255,1)));
+    background: -webkit-linear-gradient(left, rgba(204,204,255,1) 0%, rgba(204,204,255,1) 41%, rgba(213,140,255,1) 100%);
+    background: -o-linear-gradient(left, rgba(204,204,255,1) 0%, rgba(204,204,255,1) 41%, rgba(213,140,255,1) 100%);
+    background: -ms-linear-gradient(left, rgba(204,204,255,1) 0%, rgba(204,204,255,1) 41%, rgba(213,140,255,1) 100%);
+    background: linear-gradient(to right, rgba(204,204,255,1) 0%, rgba(204,204,255,1) 41%, rgba(213,140,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccccff', endColorstr='#d58cff', GradientType=1 );
 }
 
 .btn-shout {
