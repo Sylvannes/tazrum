@@ -54,6 +54,9 @@ use yii\base\ErrorException;
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
 
+    const ROLE_ADMIN = 'Administrator';
+    const ROLE_MOD = 'Moderator';
+
     public $authKey;
 
     /**
@@ -294,6 +297,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
         return md5($password . $userSalt->salt) === $this->password;
 
+    }
+
+    /**
+     * Retrieve the roles this user has and compare against a given role name
+     * @param $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId());
+        return array_key_exists($role, $roles);
     }
 
 }

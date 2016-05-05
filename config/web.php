@@ -1,6 +1,8 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
+$authManager = require(__DIR__ . '/authmanager.php');
+
 
 $config = [
     'id' => 'basic',
@@ -46,6 +48,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
+        'authManager' => $authManager,
     ],
     'params' => $params,
     'modules' => [
