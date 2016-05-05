@@ -191,7 +191,8 @@ a:hover > .panel-topic-read > .panel-body {
 }
 
 .panel-shout {
-    margin-bottom: 5px;
+    margin: 0;
+    border-bottom: 1px solid #d1d1d1;
 }
 .panel-shout > .panel-body {
     background-color: #fff;

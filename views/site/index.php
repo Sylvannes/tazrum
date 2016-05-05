@@ -40,6 +40,7 @@
                         ],
                         'reverseSort' => true
                     ]) ?>
+                    <br />
                     <?php Pjax::end(); ?>
                     <?php $form = ActiveForm::begin([
                         'id' => 'ShoutForm',
