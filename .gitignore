@@ -26,3 +26,6 @@ phpunit.phar
 # Database config
 /config/db.php
 
+# Vendor directory is ignored in favor of clients maintaining it themselves through composer update
+/vendor
+
