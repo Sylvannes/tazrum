@@ -120,14 +120,23 @@ a.desc:after {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
-.panel-subforum {
+.panel-tazrum {
+    border-color: #499BEA;
+}
+.panel-tazrum > .panel-heading {
+    background: rgba(73,155,234,1);
+    background: -moz-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(51,122,183,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(51,122,183,1)));
+    background: -webkit-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(51,122,183,1) 100%);
+    background: -o-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(51,122,183,1) 100%);
+    background: -ms-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(51,122,183,1) 100%);
+    background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(51,122,183,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#337ab7', GradientType=1 );
+    color: white;
     border-color: #5C95C5;
 }
-.panel-subforum > .panel-heading {
-    color: #fff;
-    background-color: #5C95C5;
-}
-a > .panel-subforum > .panel-body  {
+
+a > .panel-tazrum > .panel-body  {
     color: #000;
 }
 a:hover,a:focus,a:active> .panel-subforum > .panel-heading,
@@ -139,11 +148,18 @@ a:hover > .panel-subforum > .panel-body {
 }
 
 .panel-topic-unread {
-    border-color: #ffab72;
+    border-color: #F1E767;
 }
 .panel-topic-unread > .panel-heading {
+    background: rgba(241,231,103,1);
+    background: -moz-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
+    background: -webkit-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: -o-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: -ms-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    background: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
     color: #000;
-    background-color: #ffab72;
 }
 a > .panel-topic-unread > .panel-body  {
     color: #000;

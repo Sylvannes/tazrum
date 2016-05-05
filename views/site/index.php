@@ -22,7 +22,7 @@
 <div class="site-index">
     <div class="body-content">
         <div class="col-md-8">
-            <div class="panel panel-primary">
+            <div class="panel panel-tazrum">
                 <div class="panel-heading">
                     <h4 class="panel-title">Shoutbox</h4>
                 </div>
@@ -68,7 +68,7 @@
             <?php
                 foreach ($categories as $category) {
                     ?>
-                    <div class="panel panel-primary">
+                    <div class="panel panel-tazrum">
                         <div class="panel-heading">
                             <h4 class="panel-title"><?= Html::encode($category->name) ?></h4>
                         </div>
@@ -79,7 +79,7 @@
                                     ?>
                                     <div class="col-md-8">
                                         <a href="<?= Url::toRoute(['/subforum', 'id' => $subforum->id]) ?>">
-                                            <div class="panel panel-subforum">
+                                            <div class="panel panel-tazrum">
                                                 <div class="panel-heading"><?= Html::encode($subforum->name) ?></div>
                                                 <div class="panel-body"><small><?= Html::encode($subforum->desc) ?></small></div>
                                             </div>
@@ -127,7 +127,7 @@
                 echo '<div class="alert alert-' . Html::encode($key) . '">' . Html::encode($message) . '</div>';
             }
             ?>
-            <div class="panel panel-primary">
+            <div class="panel panel-tazrum">
                 <div class="panel-heading">
                     <h4 class="panel-title">Actieve gebruikers</h4>
                 </div>
@@ -141,7 +141,7 @@
                     ?>
                 </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-tazrum">
                 <div class="panel-heading">
                     <h4 class="panel-title">Zoeken</h4>
                 </div>
@@ -162,7 +162,7 @@
                     <?php ActiveForm::end() ?>
                 </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-tazrum">
                 <div class="panel-heading">
                     <h4 class="panel-title">Ongelezen topics</h4>
                 </div>
@@ -194,7 +194,7 @@
                     <?php Pjax::end(); ?>
                 </div>
             </div>
-            <div class="panel panel-primary">
+            <div class="panel panel-tazrum">
                 <div class="panel-heading">
                     <h4 class="panel-title">Recente topic activiteit</h4>
                 </div>

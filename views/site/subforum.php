@@ -27,7 +27,7 @@
 ?>
 <div class="site-index">
     <div class="body-content">
-        <div class="panel panel-primary">
+        <div class="panel panel-tazrum">
             <div class="panel-heading">
                 <h4 class="panel-title">Subforum: <?= Html::encode($subforum->name) ?></h4>
             </div>

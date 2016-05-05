@@ -9,12 +9,13 @@
 ?>
 <div class="site-index">
     <div class="body-content">
-        <div class="panel panel-primary">
+        <div class="panel panel-tazrum">
             <div class="panel-heading">
                 <h4 class="panel-title">Topic: <?= Html::encode($topic->title) ?></h4>
             </div>
             <div class="panel-body bg-tazrum-gradient">
                 <?= ListView::widget([
+                    'layout' => "{pager}\n{items}\n{pager}",
                     'dataProvider' => $dataProvider,
                     'itemView' => '_post',
                     'viewParams' => [
