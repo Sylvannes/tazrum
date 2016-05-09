@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TaZrum" default="local">
+    <target name="local">
+        <copy file="config/db.php.default" tofile="config/db.php" overwrite="false" />
+        <phingcall target="writable_directories" />
+        <phingcall target="migrate" />
+    </target>
+    <target name="test">
+        <copy file="config/db.php.default" tofile="config/db.php" overwrite="false" />
+        <phingcall target="writable_directories" />
+        <phingcall target="migrate" />
+        <exec command="&quot;${php.interpreter}&quot; yii debugdata/destroy --interactive=0" logoutput="true" checkreturn="true" />
+        <exec command="&quot;${php.interpreter}&quot; yii debugdata/create --interactive=0" logoutput="true" checkreturn="true" />
+        <exec dir="tests" command="&quot;${php.interpreter}&quot; ../vendor/codeception/codeception/codecept build" logoutput="true" />
+    </target>
+    <target name="writable_directories" hidden="true">
+        <chmod file="./web/assets" mode="0777" />
+        <chmod file="./runtime" mode="0777" />
+    </target>
+    <target name="migrate" hidden="true">
+        <exec command="&quot;${php.interpreter}&quot; yii migrate --interactive=0" logoutput="true" />
+    </target>
+    <target name="do_tests" depends="test">
+        <echo message="Current PHP interpreter is: ${php.interpreter}" />
+        <echo message="Current PHP version is: ${php.version}" />
+        <if>
+            <isset property="codeception.env" />
+            <then>
+                <echo message="codeception.env: ${codeception.env}" />
+                <exec dir="tests" command="&quot;${php.interpreter}&quot; ../vendor/codeception/codeception/codecept run --env=${codeception.env}" logoutput="true" />
+            </then>
+            <else>
+                <echo message="codeception.env: not set" />
+                <exec dir="tests" command="&quot;${php.interpreter}&quot; ../vendor/codeception/codeception/codecept run" logoutput="true" />
+            </else>
+        </if>
+    </target>
+    <target name="do_coverage" depends="test">
+        <echo message="Current PHP interpreter is: ${php.interpreter}" />
+        <echo message="Current PHP version is: ${php.version}" />
+        <if>
+            <isset property="codeception.env" />
+            <then>
+                <echo message="codeception.env: ${codeception.env}" />
+                <exec dir="tests" command="&quot;${php.interpreter}&quot; ../vendor/codeception/codeception/codecept run --env=${codeception.env} --coverage --coverage-html --coverage-xml" logoutput="true" />
+            </then>
+            <else>
+                <echo message="codeception.env: not set" />
+                <exec dir="tests" command="&quot;${php.interpreter}&quot; ../vendor/codeception/codeception/codecept run --coverage --coverage-html --coverage-xml" logoutput="true" />
+            </else>
+        </if>
+    </target>
+</project>
