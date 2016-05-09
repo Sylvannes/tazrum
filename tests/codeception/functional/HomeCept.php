@@ -3,7 +3,7 @@
 $I = new FunctionalTester($scenario);
 $I->wantTo('ensure that home page works');
 $I->amOnPage(Yii::$app->homeUrl);
-$I->see('My Company');
-$I->seeLink('About');
-$I->click('About');
-$I->see('This is the About page.');
+$I->see('TaZrum 4.0');
+$I->seeLink('Ledenlijst');
+$I->click('Ledenlijst');
+$I->see('Woonplaats');

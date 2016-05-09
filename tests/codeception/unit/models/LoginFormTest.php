@@ -25,6 +25,8 @@ class LoginFormTest extends TestCase
         ]);
 
         $this->specify('user should not be able to login, when there is no identity', function () use ($model) {
+            Yii::$app->user->logout(); // Somehow the tearDown does not properly do this
+            expect('test precondition', Yii::$app->user->isGuest)->true();
             expect('model should not login user', $model->login())->false();
             expect('user should not be logged in', Yii::$app->user->isGuest)->true();
         });
@@ -47,8 +49,8 @@ class LoginFormTest extends TestCase
     public function testLoginCorrect()
     {
         $model = new LoginForm([
-            'username' => 'demo',
-            'password' => 'demo',
+            'username' => 'User', // Depends on debug data
+            'password' => 'User',
         ]);
 
         $this->specify('user should be able to login with correct credentials', function () use ($model) {
