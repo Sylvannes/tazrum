@@ -259,13 +259,20 @@ class DebugdataController extends Controller {
     private function deleteUser ($username) {
 
         $user = User::findOne(['name' => $username]);
+        if ($user === null) {
+            return;
+        }
 
-        foreach ($user->posts as $post) {
+        foreach ($user->getPosts()->all() as $post) { // TODO: Fix "posts" being an attribute and a relation, then use short-hand notation here
             $this->deletePost($post);
         }
 
+        foreach ($user->getShouts()->all() as $shout) { // TODO: Fix "shouts" being an attribute and a relation, then use short-hand notation here
+            $this->deleteShout($shout);
+        }
+
         echo ' Deleting user: ' . $username;
-        if ($user === NULL || !$user->delete()) {
+        if (!$user->salt->delete() || !$user->delete()) {
             echo '  FAILED';
         }
         else {
@@ -288,16 +295,32 @@ class DebugdataController extends Controller {
 
     }
 
+    private function deleteShout (Shout $shout) {
+
+        echo ' Deleting shout: ' . $shout->id;
+        if (!$shout->delete()) {
+            echo '  FAILED';
+        }
+        else {
+            echo ' OK';
+        }
+        echo "\n";
+
+    }
+
     private function deleteCategory ($name) {
 
         $category = Category::findOne(['name' => $name]);
+        if ($category === null) {
+            return;
+        }
 
         foreach ($category->subforums as $subforum) {
             $this->deleteSubforum($subforum);
         }
 
         echo ' Deleting category: ' . $name;
-        if ($category === NULL || !$category->delete()) {
+        if (!$category->delete()) {
             echo '  FAILED';
         }
         else {
