@@ -43,9 +43,13 @@ Make sure the database with the specified name (default `tazrum4`) exists on the
 database server. It does not need to contain any tables. The character set
 should be `utf8` and the default collation should be `utf8_general_ci`.
 
-Then, run the Yii migration utility to create the database structure:
+### Build project
 
-	$ ./yii migrate
+Execute the following line:
+
+	vendor/phing/phing/bin/phing
+
+This runs migrations that set up the database structure.
 
 It is recommended to insert an initial data set for testing, with the following
 command:
