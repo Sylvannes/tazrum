@@ -32,7 +32,6 @@ use yii\base\ErrorException;
  * @property integer $deleted_by_user_id
  * @property string $status
  * @property string $activation_code
- * @property string $modules
  * @property integer $achievement_points
  * @property string $avatar
  * @property string $signature
@@ -42,8 +41,7 @@ use yii\base\ErrorException;
  * @property string $gender
  * @property integer $private_messages
  * @property string $custom_status
- * @property integer $last_flutter
- * @property integer $theme
+ * @property integer $last_fluttered_post_id
  *
  * @property Post[] $posts
  * @property Topic[] $topics
@@ -73,14 +71,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['posts', 'shouts', 'topics', 'polls', 'articles', 'shoutrpg_wins', 'shoutrpg_losses', 'hide_email', 'banned_by_user_id', 'deleted_by_user_id', 'achievement_points', 'private_messages', 'last_flutter', 'theme'], 'integer'],
+            [['posts', 'shouts', 'topics', 'polls', 'articles', 'shoutrpg_wins', 'shoutrpg_losses', 'hide_email', 'banned_by_user_id', 'deleted_by_user_id', 'achievement_points', 'private_messages', 'last_fluttered_post_id'], 'integer'],
             [['birth_date', 'last_login', 'registered_on', 'banned_on', 'deleted_on'], 'safe'],
-            [['last_ip', 'registered_on', 'name', 'email', 'rank'], 'required'],
+            [['last_ip', 'registered_on', 'name', 'email'], 'required'],
             [['status', 'signature', 'profile_text', 'forum_location', 'gender'], 'string'],
             [['name'], 'string', 'max' => 20],
             [['password', 'auth_key', 'activation_code', 'custom_status'], 'string', 'max' => 32],
             [['email'], 'string', 'max' => 150],
-            [['location', 'modules', 'avatar', 'real_name'], 'string', 'max' => 128],
+            [['location', 'avatar', 'real_name'], 'string', 'max' => 128],
             [['last_ip'], 'string', 'max' => 16]
         ];
     }
@@ -115,7 +113,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'deleted_by_user_id' => 'Verwijderd door',
             'status' => 'Status',
             'activation_code' => 'Activatiecode',
-            'modules' => 'Modules',
             'achievement_points' => 'Achievement punten',
             'avatar' => 'Avatar',
             'signature' => 'Signature',
@@ -125,8 +122,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'gender' => 'Geslacht',
             'private_messages' => 'Priveberichten',
             'custom_status' => 'Custom status',
-            'last_flutter' => 'Laatste flutter',
-            'theme' => 'Theme',
+            'last_fluttered_post_id' => 'Laatste flutter',
         ];
     }
 

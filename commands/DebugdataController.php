@@ -2,7 +2,6 @@
 
 namespace app\commands;
 
-use Yii;
 use yii\console\Controller;
 use yii\db\Expression;
 use app\models\User;
@@ -36,10 +35,10 @@ class DebugdataController extends Controller {
         ];
 
         $users = [
-            $this->createUser('User', 2),
-            $this->createUser('SubMod', 2 | 4),
-            $this->createUser('Mod', 2 | 4 | 8),
-            $this->createUser('Admin', 2 | 4 | 8 | 16),
+            $this->createUser('User'),
+            $this->createUser('SubMod'),
+            $this->createUser('Mod'),
+            $this->createUser('Admin'),
         ];
         foreach ($users as $user) {
             $this->createShout($user, 'Hello world!');
@@ -210,14 +209,13 @@ class DebugdataController extends Controller {
 
     }
 
-    private function createUser ($username, $rank)
+    private function createUser ($username)
     {
 
         $user = new User();
         $user->name = $username;
         $user->real_name = ucwords($username);
         $user->email = 'debug_user@tazrum.local';
-        $user->rank = $rank;
         $user->last_ip = '127.0.0.1';
         $user->registered_on = new Expression('NOW()');
         $user->status = 'active';
@@ -261,9 +259,46 @@ class DebugdataController extends Controller {
     private function deleteUser ($username) {
 
         $user = User::findOne(['name' => $username]);
+        if ($user === null) {
+            return;
+        }
+
+        foreach ($user->getPosts()->all() as $post) { // TODO: Fix "posts" being an attribute and a relation, then use short-hand notation here
+            $this->deletePost($post);
+        }
+
+        foreach ($user->getShouts()->all() as $shout) { // TODO: Fix "shouts" being an attribute and a relation, then use short-hand notation here
+            $this->deleteShout($shout);
+        }
 
         echo ' Deleting user: ' . $username;
-        if ($user === NULL || !$user->delete()) {
+        if (!$user->salt->delete() || !$user->delete()) {
+            echo '  FAILED';
+        }
+        else {
+            echo ' OK';
+        }
+        echo "\n";
+
+    }
+
+    private function deletePost (Post $post) {
+
+        echo ' Deleting post: ' . $post->id;
+        if (!$post->delete()) {
+            echo '  FAILED';
+        }
+        else {
+            echo ' OK';
+        }
+        echo "\n";
+
+    }
+
+    private function deleteShout (Shout $shout) {
+
+        echo ' Deleting shout: ' . $shout->id;
+        if (!$shout->delete()) {
             echo '  FAILED';
         }
         else {
@@ -276,9 +311,54 @@ class DebugdataController extends Controller {
     private function deleteCategory ($name) {
 
         $category = Category::findOne(['name' => $name]);
+        if ($category === null) {
+            return;
+        }
+
+        foreach ($category->subforums as $subforum) {
+            $this->deleteSubforum($subforum);
+        }
 
         echo ' Deleting category: ' . $name;
-        if ($category === NULL || !$category->delete()) {
+        if (!$category->delete()) {
+            echo '  FAILED';
+        }
+        else {
+            echo ' OK';
+        }
+        echo "\n";
+
+    }
+
+    private function deleteSubforum (Subforum $subforum) {
+
+        $subforum->last_topic_id = null;
+        $subforum->save();
+        foreach ($subforum->topics as $topic) {
+            $this->deleteTopic($topic);
+        }
+
+        echo ' Deleting subforum: ' . $subforum->name;
+        if (!$subforum->delete()) {
+            echo '  FAILED';
+        }
+        else {
+            echo ' OK';
+        }
+        echo "\n";
+
+    }
+
+    private function deleteTopic (Topic $topic) {
+
+        $topic->last_post_id = null;
+        $topic->save();
+        foreach ($topic->posts as $post) {
+            $this->deletePost($post);
+        }
+
+        echo ' Deleting topic: ' . $topic->title;
+        if (!$topic->delete()) {
             echo '  FAILED';
         }
         else {
